@@ -5,7 +5,7 @@ import time
 APP_ID          = 264710
 POSITIVE_TARGET = 200
 NEGATIVE_TARGET = 100
-SINCE_DATE      = 1777636800  # June 1, 2026 (Unix timestamp)
+SINCE_DATE      = 1777636800  # May 1, 2026 (Unix timestamp)
 
 
 def collect_reviews(review_type, target):
