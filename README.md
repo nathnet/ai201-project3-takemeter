@@ -2,6 +2,54 @@
 
 A text classifier for Subnautica Steam reviews that sorts each review into one of four discourse types — `analysis`, `experience`, `joke`, or `noise` — so readers can filter reviews by what they actually want to learn. Built by fine-tuning DistilBERT and comparing it against a Groq zero-shot baseline. See [`planning.md`](planning.md) for the full plan and [`data/taxonomy.md`](data/taxonomy.md) for label definitions.
 
+## Results
+
+### Zero-shot baseline (Milestone 4)
+
+The Groq API (`llama-3.3-70b-versatile`) was used as a zero-shot baseline on the 30-review test split. The system prompt:
+
+```
+You are classifying Steam reviews for the video game Subnautica.
+Assign each review to exactly one of the following categories.
+
+analysis: The review makes a claim about the game — its mechanics, design, performance, or features. Thin claims like "runs great" or "good graphics" count.
+Example: "The base building leaves a lot to be desired. Missing some quality of life updates I expect from survival games."
+
+experience: The review describes the reviewer's personal reaction or playthrough story. Thin reactions like "great game" or "love it" count.
+Example: "I got lost so many times and shat my pants (8) times."
+
+joke: Written to be funny in a way that only lands if you know Subnautica. A bare reference with no punchline is not a joke.
+Example: "you cant sex reaper leviathans (its been 19 hours and you cant im so angry.)"
+
+noise: Has no identifiable discourse type at all — not even a thin reaction or claim about the game.
+Example: "gg"
+
+Respond with ONLY the label name.
+Do not explain your reasoning.
+
+Valid labels:
+analysis
+experience
+joke
+noise
+```
+
+**Results (30/30 parseable responses):**
+
+| Label | Precision | Recall | F1 | Support |
+|-------|-----------|--------|----|---------|
+| analysis | 0.73 | 1.00 | 0.84 | 8 |
+| experience | 0.86 | 0.86 | 0.86 | 7 |
+| joke | 1.00 | 0.62 | 0.77 | 8 |
+| noise | 0.86 | 0.86 | 0.86 | 7 |
+| **macro avg** | **0.86** | **0.83** | **0.83** | **30** |
+
+Accuracy: 0.833
+
+**Reflection:** The weakest label was `joke` (recall = 0.62) — the model missed roughly 3 in 8 jokes. `analysis` had the lowest precision (0.73), meaning it over-fired on non-analysis reviews. Both issues point to the same failure: Subnautica-specific deadpan humor reads as a sincere reaction or claim to a model with no community context. The model never falsely labels something as `joke` (precision = 1.00), but it cannot recognize a joke when it sees one without prior exposure to the community's style.
+
+**Hypothesis:** Fine-tuned DistilBERT will recover `joke` recall most, because it will learn from labeled examples that short, punchy Subnautica-referencing phrases signal `joke` even without obvious comedic markers. The `analysis`/`experience` boundary — where the baseline already performs well — should stay stable or improve slightly.
+
 ## AI Usage Transparency
 
 This section documents where AI tools were used in the project. More usages will be added as the project progresses.
