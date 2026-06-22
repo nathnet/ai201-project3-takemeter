@@ -14,10 +14,10 @@ Four labels are used, each capturing the type of discourse rather than whether t
 
 | Label | Definition |
 |-------|------------|
-| `analysis` | The review makes specific, verifiable claims about the game — its mechanics, design decisions, performance, missing features, or price. |
+| `analysis` | The review makes claims about the game — its mechanics, design decisions, performance, missing features, or price. Specific, verifiable claims are the clearest examples, but thin claims about the game's properties also count. |
 | `experience` | The review describes something that happened to the reviewer during their playthrough — a personal moment, emotional reaction, frustration, or story. |
 | `joke` | The review is written to be funny or absurdist, and the humor references the game, its creatures, mechanics, or community culture. |
-| `noise` | The review contributes nothing to a reader's decision to buy or avoid the game — gibberish, filler, or off-topic content such as bug reports and support questions. |
+| `noise` | The review has no identifiable discourse type — gibberish, filler, off-topic content such as bug reports and support questions, or text that says nothing about the game or the reviewer's experience with it. |
 
 ---
 
@@ -25,9 +25,9 @@ Four labels are used, each capturing the type of discourse rather than whether t
 
 The following cases sit genuinely between two labels. Decision rules for each are documented in [`data/taxonomy.md`](data/taxonomy.md) under *How to Handle Ambiguous Cases*.
 
-- **"I LOST MY STUFF THAT IVE BEEN GRINDING FOR A WHOLE DAY BECAUSE I DIDNT PRESS A BUTTON. THERE SHOULD ALWAYS BE A AUTO-SAVE BUTTON FOR EVERYGAME NO MATTER WHAT."** — opens as a personal loss (`experience`) but pivots into a feature demand and design critique (`analysis`). Annotated as `experience` — applying the rewrite test (*Feature requests and mechanic complaints*), the core claims collapse to a single generic sentence ("please add autosave"), meaning the substance is personal and session-specific rather than a claim about the game.
+- **"I LOST MY STUFF THAT IVE BEEN GRINDING FOR A WHOLE DAY BECAUSE I DIDNT PRESS A BUTTON. THERE SHOULD ALWAYS BE A AUTO-SAVE BUTTON FOR EVERYGAME NO MATTER WHAT."** — opens as a personal loss (`experience`) but pivots into a feature demand that can look like a design claim (`analysis`). Annotated as `experience` — stripping the personal loss leaves only a wish ("there *should* be autosave"), and a wish ("should") is not a declarative claim about the game ("is"), per *Feature requests, mechanic complaints, and claims wrapped in a personal story*.
 - **"someone pooed my pants"** — constructed as a punchline (`joke`) but plausibly describes a genuine fear reaction to the game's underwater horror (`experience`). Annotated as `joke` — the distancing language ("someone" instead of "I") and punchline construction signal comedic intent over genuine reaction, per *Humorous lines that reference a real reaction*.
-- **"Lots of things to do and find"** — references a real quality of the game (`experience`) but is too vague to meaningfully inform a buyer's decision (`noise`). Annotated as `noise` — it communicates nothing a reader couldn't already assume about an open-world survival game, per *Vague generic statements*.
+- **"Lots of things to do and find"** — makes a thin claim about the game's content (`analysis`) but is generic enough to describe almost any open-world survival game (`noise`). Annotated as `analysis` — it asserts something about the game's properties, even if thinly, per *Vague generic statements*.
 
 ---
 
