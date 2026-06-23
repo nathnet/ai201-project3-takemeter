@@ -2,6 +2,10 @@
 
 TakeMeter classifies Steam reviews for Subnautica into four discourse types — `analysis`, `experience`, `joke`, or `noise` — so readers can filter by what they actually want to learn. Built by fine-tuning DistilBERT and comparing it against a Groq zero-shot baseline.
 
+<a href="https://www.loom.com/share/95f6330294f046d09198debbe1ba04b5">
+  <img src="https://cdn.loom.com/sessions/thumbnails/95f6330294f046d09198debbe1ba04b5-c88702ee539414af.jpg" width="600" alt="TakeMeter demo video" title="TakeMeter demo video">
+</a>
+
 ## Community
 
 Subnautica (Steam app ID 264710) is a survival/exploration game with a large and humor-driven review community. It was chosen because its reviews naturally span all four label types without needing to search for specific examples.
